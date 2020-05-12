@@ -35,6 +35,7 @@ class Home extends Component {
     //Initial state variables
     this.state = {
       currentHorses: [],
+      totalHorses: '',
       result: '',
       finalResult: '',
     };
@@ -55,8 +56,16 @@ class Home extends Component {
 
       if (totalHorses.length === NO_OF_HORSES) {
         console.log('Total Horses:', totalHorses);
+
+        let totalHorseStr = '';
+        totalHorseStr =
+          totalHorseStr +
+          "Let's assume random numbers for 25 horses are as follows::\n\n" +
+          totalHorses.join(', ');
+
         this.setState({
           currentHorses: totalHorses,
+          totalHorses: totalHorseStr,
           result: '',
           finalResult: '',
         });
@@ -352,9 +361,7 @@ class Home extends Component {
           color={colorCodes.red}
           onPress={this.generateRandom25Horses}
         />
-        <Text style={HomeStyles.horsesTextStyle}>
-          {this.state.currentHorses.join(', ')}
-        </Text>
+        <Text style={HomeStyles.horsesTextStyle}>{this.state.totalHorses}</Text>
         <Button
           title="Click here to - 'Perform Logic for obtaining fastest 3 horses and total number of races required'"
           style={HomeStyles.buttonStyle}
